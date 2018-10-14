@@ -1,3 +1,4 @@
 #!/bin/bash
-
-./qt-unified-linux-x64-3.0.5-online.run --script script.qs
+arr=(`ls | grep -e '^qt-unified[[:graph:]]*run$' | sort -f`)
+position=$(( ${#arr[*]} - 1 ))
+./${arr[$position]} --script script.qs

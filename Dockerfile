@@ -12,7 +12,7 @@ RUN apt update && \
     git libblkid-dev libuuid1 mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libegl1-mesa-dev
 
 RUN mkdir /artifacts
-COPY data/* /artifacts
+COPY data /artifacts
 RUN cd /artifacts && chmod +x $(ls /artifacts | grep -E "^qt[[:print:]]*run$")
 
 ENTRYPOINT '/bin/bash'
