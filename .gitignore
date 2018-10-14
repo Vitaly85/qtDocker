@@ -1,2 +1,14 @@
 # *.run scripts
 *.run
+
+# archives
+*.gz
+*.tar
+*.7z
+*.bz2
+
+# libs
+*.o
+*.so
+*.la
+*.a
