@@ -2,8 +2,6 @@ FROM ubuntu:18.04
 
 MAINTAINER Vitali Adamenka <zdradnik@gmail.com>
 
-#TODO QT_version
-#TODO QT_PATH
 #TODO VLC-3
 ARG DESTINATION=/opt/Qt
 ARG QT_COMPONENTS=qt.qt5.5112.gcc_64
@@ -17,5 +15,10 @@ RUN apt update && \
 RUN mkdir /artifacts
 COPY data /artifacts
 RUN cd /artifacts && chmod +x $(ls /artifacts | grep -E "^qt[[:print:]]*run$")
+
+RUN git clone -b OpenSSL_1_0_2-stable --depth 1 --no-tags https://github.com/openssl/openssl.git && cd openssl && \
+    ./Configure no-rkb5 shared zlib no-dso linux-x86_64 && make -j4 && make test
+
+ENV LD_LIBRARY_PATH=/artifacts/openssl
 
 ENTRYPOINT '/bin/bash'
