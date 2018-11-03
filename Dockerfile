@@ -16,9 +16,11 @@ RUN mkdir /artifacts
 COPY data /artifacts
 RUN cd /artifacts && chmod +x $(ls /artifacts | grep -E "^qt[[:print:]]*run$")
 
-RUN git clone -b OpenSSL_1_0_2-stable --depth 1 --no-tags https://github.com/openssl/openssl.git && cd openssl && \
+RUN cd /artifacts && git clone -b OpenSSL_1_0_2-stable --depth 1 --no-tags https://github.com/openssl/openssl.git && cd openssl && \
     ./Configure no-rkb5 shared zlib no-dso linux-x86_64 && make -j4 && make test
 
 ENV LD_LIBRARY_PATH=/artifacts/openssl
+ENV QT_COMPONENTS=$QT_COMPONENTS
+ENV QT_SELECT=qt
 
 ENTRYPOINT '/bin/bash'
