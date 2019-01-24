@@ -4,7 +4,7 @@ MAINTAINER Vitali Adamenka <zdradnik@gmail.com>
 
 #TODO VLC-3
 ARG DESTINATION=/opt/Qt
-ARG QT_COMPONENTS=qt.qt5.5112.gcc_64
+ARG QT_COMPONENTS=qt.qt5.5121.gcc_64
 ARG UID
 
 # USER user
@@ -33,5 +33,7 @@ RUN useradd -G sudo,root -m -s /bin/bash -u $UID user
 ENV LD_LIBRARY_PATH=/artifacts/openssl
 ENV QT_COMPONENTS=$QT_COMPONENTS
 ENV QT_SELECT=qt
+ENV LD_LIBRARY_PATH=/artifacts/openssl:/usr/lib/x86_64-linux-gnu/
+ENV PATH=$PATH:$DESTINATION/Tools/QtCreator/bin
 
 ENTRYPOINT '/bin/bash'

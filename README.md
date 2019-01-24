@@ -1,23 +1,31 @@
 Basic HOWTO
 -----------------------------
 ### Step 0:
-  download qt online installator form https://www.qt.io/download
-  Put online installer in data directory
-  installer must be "\*-run" file and available to use qs script
+    download qt online installator form https://www.qt.io/download
+    Put online installer in data directory
+    installer must be "\*-run" file and available to use qs script
 
 -----------------------------
 ### Step 1:
-  `cd PATH_WITH_DOCKERFILE && docker build -v MY_NAME:MY_VERSION .`
+    Set CONTEINER_MAC_ADDR='mac'
+    Set QT_COMPONENTS='qt.qt5.5121.gcc_64' or what you need
+    Set HOST_DIR="/home/$USER/APP_FOLDER"
+    TODO make correct conteiner version (for now it is 4 =) ) 
+
+    use `make build` - for build docker image
 
 -----------------------------
 ### Step 2:
-  Allow connections to x-server (a.e. `xhost +` )
+    Allow connections to x-server (a.e. `xhost +` )
   
 -----------------------------
 ### Step 3:
-  `docker run --privileged -ti -e DISPLAY=$DISPLAY --mac-address $MAC_ADDR -v /tmp:/tmp -v $YOUR_HOST_SOURCE_PATH:$YOUR_DECKER_SOURCE_PATH MY_NAME:MY_VERSION`
+    `docker run --privileged -ti -e DISPLAY=$DISPLAY --mac-address $MAC_ADDR -v /tmp:/tmp -v $YOUR_HOST_SOURCE_PATH:$YOUR_DECKER_SOURCE_PATH MY_NAME:MY_VERSION`
+    or
+    `make run`
 
 -----------------------------
 ### Step 4:
-  run `/artifacts/runme.sh` - for autoinstall qt (see script.qs for specify
-another qt version, 5.11.2 gcc_x86 by default)
+    Enter to docker env and run /artifacts/runme.sh - this script will install
+specified Qt version (/opt/Qt for default)
+    
