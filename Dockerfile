@@ -14,9 +14,10 @@ ARG UID
 RUN if [ -z $UID ]; then echo "\e[31mNo UID!, set your actual uid to arg UID!"; echo "\e[32m$HELP\e[39m"; exit 1; fi
 
 RUN apt update && \
-    apt install -y libdbus-1-dev libfreetype6-dev libfontconfig1-dev libx11-xcb-dev curl \
+    apt install -y libdbus-1-dev libfreetype6-dev libfontconfig1-dev libx11-xcb-dev libxkbcommon-x11-dev curl \
     x11-common xkb-data \
     git libblkid-dev libuuid1 mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libegl1-mesa-dev \
+    mc \
     qtchooser firefox clang-format-6.0
 
 RUN mkdir /artifacts
@@ -34,6 +35,5 @@ ENV LD_LIBRARY_PATH=/artifacts/openssl
 ENV QT_COMPONENTS=$QT_COMPONENTS
 ENV QT_SELECT=qt
 ENV LD_LIBRARY_PATH=/artifacts/openssl:/usr/lib/x86_64-linux-gnu/
-ENV PATH=$PATH:$DESTINATION/Tools/QtCreator/bin
 
 ENTRYPOINT '/bin/bash'

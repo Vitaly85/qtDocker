@@ -17,7 +17,7 @@ HELP="can't find Qt5 installation folder in $DESTINATION, \n \
 
 FOLDERS=$(ls $DESTINATION | grep '5.')
 
-if [ ${#FOLDER} -le 1 ]; then
+if [ ${#FOLDERS} -le 1 ]; then
   echo -e $HELP
   exit 1
 fi
@@ -37,3 +37,6 @@ fi
 qtchoolser -install -f qt $DESTINATION/$FOLDER/gcc_64/bin/qmake
 
 echo -e "qtchooser name qt is set by default, see 'qtchooser --help' for change it."
+
+echo 'export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin/' >> /home/user/.bashrc
+echo 'cd ~' >> /home/user/.bashrc
